@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   
+}
+.counter-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #020e17;
+}
+
+.counter-card {
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  min-width: 420px;
+  background-color: #180939 !important;
+}
+
+
+.counter-number {
+  color: #f9f9f9;
+  margin: 1.5rem 0;
+}
+.text{
+    color: #fff;
+    font-size: 1.5rem;
+    text-align: center;
+}
