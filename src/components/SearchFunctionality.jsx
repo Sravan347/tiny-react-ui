@@ -1,24 +1,39 @@
 import React, { useEffect, useState } from "react";
 
 const SearchFunctionality = () => {
-  const [user, setUser] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);      // original unfiltered
+  const [filteredUsers, setFilteredUsers] = useState([]); // search result
+
   useEffect(() => {
     fetch("https://json-placeholder.mock.beeceptor.com/users")
       .then((res) => res.json())
       .then((data) => {
-         setUser(data);
+        setAllUsers(data);
+        setFilteredUsers(data);
       })
       .catch((err) => console.error("Fetch error:", err));
   }, []);
-  console.log(user);
+
+  const handleChange = (e) => {
+    const searchData = e.target.value.toLowerCase();
+    const results = allUsers.filter((el) =>
+      el.name.toLowerCase().includes(searchData)
+    );
+    setFilteredUsers(results);
+  };
 
   return (
     <div>
-      <h1>search functionality ui</h1>
+      <h1>Search Functionality UI</h1>
+      <input
+        type="text"
+        placeholder="Search user by name..."
+        onChange={handleChange}
+      />
       <ul>
-        {user.map((el) => {
-          return <li>{el.name}</li>;
-        })}
+        {filteredUsers.map((el) => (
+          <li key={el.id}>{el.name}</li>
+        ))}
       </ul>
     </div>
   );
